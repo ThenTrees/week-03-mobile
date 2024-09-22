@@ -18,12 +18,9 @@ const Screen_01 = ({navigation}) => {
                     style={{width:250, height:150, marginLeft: 120, marginBottom: 20}} />
                 </View>
                 <View style = {styles.footer}>
-                    <TouchableOpacity style={styles.button}
-                    onPress={()=> {
-                        navigation.navigate('Screen_02')
-
-                    }}
-                    >
+                    <TouchableOpacity style={styles.button} onPress={
+                        () => navigation.navigate('screen_02')
+                    }>
                         <Text style={styles.textButton}>Get Started</Text>
                     </TouchableOpacity>
                 </View>
