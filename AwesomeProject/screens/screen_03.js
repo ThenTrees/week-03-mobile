@@ -7,7 +7,7 @@ import PeachImage from "../assets/images/Image102_(1).png"
 import AvocadoImage from "../assets/images/Image103(1).png"
 import increaseImage from "../assets/images/Image_175.png"
 import decreaseImage from "../assets/images/Image_176.png"
-
+import BackImage from "../assets/images/Image_183.png"
 const myCart = [
     {id: '1', price: "28.00", desc: "Apple Italian Piada", quantity: 2, rate: 5,image: `${AppleImage}`},
     {id: '2', price: "15.00", desc: "Pear American", quantity: 1, rate: 5,image: `${PearImage}`},
@@ -25,13 +25,19 @@ const total = ()=>{
     return sum+".00";
 }
 
-export default Screen_03 = () => {
-
-    
-
+export default Screen_03 = ({navigation}) => {
     return(
         // Header
         <View style={styles.container}>
+            <View style={styles.nav}>
+                <TouchableOpacity
+                onPress={()=> {
+                    navigation.navigate('screen_02')
+                }}>
+                    <Image style={{width: 25,height:25}} source={BackImage}/>
+                </TouchableOpacity>
+                
+            </View>
             <Text style={styles.title}>My Basket</Text>
             <FlatList
                 data={myCart}
@@ -60,9 +66,11 @@ export default Screen_03 = () => {
                     <Text style={{fontSize: 26, fontWeight: '700', color: 'purple'}}>Total: </Text>
                     <Text style={{fontSize: 26, fontWeight: '700', color: 'purple'}}>$ {total()}</Text>
                 </View>
-                <TouchableOpacity style={
-                        styles.btnPayment
-                    }>
+                <TouchableOpacity style={styles.btnPayment}
+                onPress={()=> {
+                    alert("Payment success");
+                }}
+                >
                     <Text style={{
                         color: '#fff',
                         fontWeight: 'bold',
@@ -80,14 +88,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#eee',
-        padding: 10,
+        margin: 10
+    },
+    nav:{
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        
+        marginTop: 30,
     },
     title: {
         fontSize: 28,
         fontWeight: 'bold',
         marginBottom: 10,
         color: '#00FF00',
-        marginTop: 50
+        marginVertical: 20
     },
     element: {
         flex: 1,
@@ -158,5 +172,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         justifyContent: 'center',
         alignItems: 'center',
-    }
+    },
+    
 })

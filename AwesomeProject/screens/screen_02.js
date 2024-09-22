@@ -6,34 +6,74 @@ import CoconutImage from "../assets/images/Image105.png"
 import OrangeImage from "../assets/images/Image106.png"
 import PeachImage from "../assets/images/Image102.png"
 import AvocadoImage from "../assets/images/Image103.png"
+import BackImage from "../assets/images/Image_183.png"
+import CartImage from "../assets/images/Image_182.png"
+import SeafoodImage from "../assets/images/Image_95.png"
+import DrinkImage from "../assets/images/Image_96.png"
+import { useState } from "react"
 
 
- 
-const data = [
-    {id: 1, name: "Apple", image: `${AppleImage}`},
-    {id: 2, name: "Pear", image: `${PearImage}`},
-    {id: 3, name: "Coconut", image: `${CoconutImage}`},
-    {id: 4, name: "Orange", image: `${OrangeImage}`},
-    {id: 5, name: "Peach", image: `${PeachImage}`},
-    {id: 6, name: "Avocado", image: `${AvocadoImage}`},
-]
-
-export default Screen_02 = () => {
+export default Screen_02 = ({navigation}) => {
+    const [data, setData] = useState([
+        {id: 1, type: 'vegetable',name: "Apple", image: `${AppleImage}`},
+        {id: 2, type: 'vegetable',name: "Pear", image: `${PearImage}`},
+        {id: 3, type: 'vegetable',name: "Coconut", image: `${CoconutImage}`},
+        {id: 4, type: 'vegetable',name: "Orange", image: `${OrangeImage}`},
+        {id: 5, type: 'vegetable',name: "Peach", image: `${PeachImage}`},
+        {id: 6, type: 'vegetable',name: "Avocado", image: `${AvocadoImage}`},
+    
+        {id: 7, type: 'seafood',name: "Seafood 1", image: `${SeafoodImage}`},
+        {id: 8, type: 'seafood',name: "Seafood 2", image: `${SeafoodImage}`},
+        {id: 9, type: 'seafood',name: "Seafood 3", image: `${SeafoodImage}`},
+        {id: 10, type: 'seafood',name: "Seafood 4", image: `${SeafoodImage}`},
+        {id: 11, type: 'seafood',name: "Seafood 5", image: `${SeafoodImage}`},
+        {id: 12, type: 'seafood',name: "Seafood 6", image: `${SeafoodImage}`},
+    
+        {id: 13, type: 'drink',name: "Seafood 1", image: `${DrinkImage}`},
+        {id: 14, type: 'drink',name: "Seafood 2", image: `${DrinkImage}`},
+        {id: 15, type: 'drink',name: "Seafood 3", image: `${DrinkImage}`},
+        {id: 16, type: 'drink',name: "Seafood 4", image: `${DrinkImage}`},
+        {id: 17, type: 'drink',name: "Seafood 5", image: `${DrinkImage}`},
+        {id: 18, type: 'drink',name: "Seafood 6", image: `${DrinkImage}`},
+    ]);
+    const [type, setType] = useState('vegetable');
+    const [selectBtn, setSelectBtn] = useState('vegetable');
     return(
         <View style={styles.container}>
+            <View style={styles.nav}>
+                <TouchableOpacity
+                onPress={()=> {
+                    navigation.navigate('screen_01')
+                }}>
+                    <Image style={{width: 25,height:25}} source={BackImage}/>
+                </TouchableOpacity>
+                <TouchableOpacity
+                style={styles.nav}
+                onPress={()=> {
+                    navigation.navigate('screen_03')
+                }}>
+                    <Image style={{width: 25,height:25, left: 25, bottom:32}} source={CartImage}/>
+                </TouchableOpacity>
+            </View>
             <TextInput 
                 placeholder="Search"
                 style={styles.textInput}
             >
             </TextInput>
             <View style={styles.category}>
-                <TouchableOpacity style={[styles.typeVeg, styles.changStatus]}>
-                    <Text style={[styles.textType, styles.changStatus]}>Vegetables</Text>
+                <TouchableOpacity 
+                onPress={()=> { setType('vegetable') }}
+                style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'vegetable' ? '#00FF00' : '#eee'}]}>
+                    <Text style={[styles.textType]}>Vegetables</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.typeVeg}>
+                <TouchableOpacity 
+                onPress={()=> { setType('seafood') }}
+                style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'seafood' ? '#00FF00' : '#eee',}]}>
                     <Text style={styles.textType}>Seafoods</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.typeVeg}>
+                <TouchableOpacity 
+                onPress={()=> { setType('drink') }}
+                style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'drink' ? '#00FF00' : '#eee',}]}>
                     <Text style={styles.textType}>Drinks</Text>
                 </TouchableOpacity>
             </View>
@@ -67,17 +107,17 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#eee',  
+        margin: 5
     },
     body: {
         flex: 1,
         backgroundColor: '#eee',  
     },
     textInput: {
-        marginTop: 50,
         marginHorizontal: 20,
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: "#000",
-        height: 50,
+        height: 55,
         borderRadius: 10,
     },
     category: {
@@ -101,10 +141,9 @@ const styles = StyleSheet.create({
     textType:{
         fontSize: 18,
         fontWeight: '700',
-        color: 'lightblue',
+        color: 'blue',
     },
     changStatus:{
-        backgroundColor: '#00FF00',
         color: '#fff',
     },
     element: {
@@ -130,5 +169,11 @@ const styles = StyleSheet.create({
         justifyContent:'space-between',
         marginHorizontal: 20,
         marginBottom: 20
-    }
+    },
+    nav:{
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        marginHorizontal: 20,
+        marginTop: 30,
+    },
 })
