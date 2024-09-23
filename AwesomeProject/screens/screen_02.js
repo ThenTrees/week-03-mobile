@@ -37,7 +37,7 @@ export default Screen_02 = ({navigation}) => {
         {id: 18, type: 'drink',name: "Seafood 6", image: `${DrinkImage}`},
     ]);
     const [type, setType] = useState('vegetable');
-    const [selectBtn, setSelectBtn] = useState('vegetable');
+    const [selectBtn, setSelectBtn] = useState(true);
     return(
         <View style={styles.container}>
             <View style={styles.nav}>
@@ -62,17 +62,17 @@ export default Screen_02 = ({navigation}) => {
             </TextInput>
             <View style={styles.category}>
                 <TouchableOpacity 
-                onPress={()=> { setType('vegetable') }}
+                onPress={()=> { setType('vegetable'), setSelectBtn(false) }}
                 style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'vegetable' ? '#00FF00' : '#eee'}]}>
                     <Text style={[styles.textType]}>Vegetables</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                onPress={()=> { setType('seafood') }}
+                onPress={()=> { setType('seafood'),setSelectBtn(false)  }}
                 style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'seafood' ? '#00FF00' : '#eee',}]}>
                     <Text style={styles.textType}>Seafoods</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                onPress={()=> { setType('drink') }}
+                onPress={()=> { setType('drink'), setSelectBtn(false) }}
                 style={[styles.typeVeg, styles.changStatus,{ backgroundColor: type == 'drink' ? '#00FF00' : '#eee',}]}>
                     <Text style={styles.textType}>Drinks</Text>
                 </TouchableOpacity>
@@ -82,10 +82,13 @@ export default Screen_02 = ({navigation}) => {
 
                 <View style={styles.row}>
                    <Text style={{fontSize: 24, color: '#00FF00', fontWeight: 600}}>Order Your Favorite!</Text>
-                   <Text style={{fontSize: 24, color: 'red', fontWeight: 600}}>See all</Text>
+                    <TouchableOpacity onPress={()=>{setSelectBtn(true)}} >
+                        <Text style={{fontSize: 24, color: 'red', fontWeight: 600}}>See all</Text>
+                    </TouchableOpacity>
+
                 </View>
                 <FlatList
-                    data={data}
+                    data={ selectBtn ? data : (data.filter((item) => item.type == type ))}
                     keyExtractor={item => item.id}
                     numColumns={2}                        // Hiển thị 2 item trên một hàng
                     columnWrapperStyle={styles.rowList} 
@@ -176,4 +179,4 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         marginTop: 30,
     },
-})
+  })
