@@ -15,7 +15,9 @@ export default Screen_01 = ({navigation}) => {
                 }}>
                     <Text style={ styles.textBtnSign}>Sign up</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.btnLogin} >
+                <TouchableOpacity style={styles.btnLogin} onPress={()=> {
+                    navigation.navigate('login')
+                }} >
                     <Text style={ styles.textBtnLogin}>Login</Text>
                 </TouchableOpacity>
                 <View style={styles.listAround}>
@@ -32,8 +34,9 @@ export default Screen_01 = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginHorizontal: 18,
-        marginVertical:5,
+        paddingHorizontal: 18,
+        paddingVertical: 5,
+        backgroundColor: '#fff',
     },
     header:{
         justifyContent: 'center',
@@ -46,11 +49,13 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
         color: '#000',
         fontSize: 24,
-        fontWeight: 700,
+        fontWeight: "700",
         marginTop: 20
         },
     textDesc: { 
-        fontSize: 16
+        fontSize: 16,
+        color: "#999",
+        
     },
     btnSignUp:{
         backgroundColor: '#00CCFF',
@@ -78,8 +83,8 @@ const styles = StyleSheet.create({
     },
     around:{
         backgroundColor: "#00CCFF",
-        width: 20,
-        height:20,
+        width: 10,
+        height:10,
         borderRadius: 50,
         marginHorizontal: 5
     },
@@ -89,6 +94,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     child: {
-        backgroundColor: '#ccc'
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#00CCFF'
     }
 })
