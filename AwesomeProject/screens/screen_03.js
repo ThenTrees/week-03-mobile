@@ -8,14 +8,7 @@ import AvocadoImage from "../assets/images/Image103(1).png"
 import increaseImage from "../assets/images/Image_175.png"
 import decreaseImage from "../assets/images/Image_176.png"
 import BackImage from "../assets/images/Image_183.png"
-const myCart = [
-    {id: '1', price: "28.00", desc: "Apple Italian Piada", quantity: 2, rate: 5,image: `${AppleImage}`},
-    {id: '2', price: "15.00", desc: "Pear American", quantity: 1, rate: 5,image: `${PearImage}`},
-    {id: '3', price: "10.00", desc: "Coconut VietNam", quantity: 3, rate: 5,image: `${CoconutImage}`},
-    {id: '4', price: "9.00", desc: "Apricot China", quantity: 1, rate: 5,image: `${PeachImage}`},
-    {id: '5', price: "8.00", desc: "Orange ThaiLan", quantity: 1, rate: 5, image: `${OrangeImage}`},
-    {id: '6', price: "10.00", desc: "Avacado VietNam", quantity: 1, rate: 5, image: `${AvocadoImage}`},
-]
+import { useState } from "react"
 
 const total = ()=>{
     let sum = 0
@@ -24,8 +17,18 @@ const total = ()=>{
     })
     return sum+".00";
 }
+const myCart =[
+    {id: '1', price: "28.00", desc: "Apple Italian Piada", quantity: 2, rate: 5,image: `${AppleImage}`},
+    {id: '2', price: "15.00", desc: "Pear American", quantity: 1, rate: 5,image: `${PearImage}`},
+    {id: '3', price: "10.00", desc: "Coconut VietNam", quantity: 3, rate: 5,image: `${CoconutImage}`},
+    {id: '4', price: "9.00", desc: "Apricot China", quantity: 1, rate: 5,image: `${PeachImage}`},
+    {id: '5', price: "8.00", desc: "Orange ThaiLan", quantity: 1, rate: 5, image: `${OrangeImage}`},
+    {id: '6', price: "10.00", desc: "Avacado VietNam", quantity: 1, rate: 5, image: `${AvocadoImage}`},
+];
 
 export default Screen_03 = ({navigation}) => {
+    
+    
     return(
         // Header
         <View style={styles.container}>
@@ -53,9 +56,11 @@ export default Screen_03 = ({navigation}) => {
                             <Text>{item.rate}</Text>
                         </View>
                         <View style={styles.child_3}>
-                            <Image source={decreaseImage}/>
+                                <Image source={decreaseImage}/>
                             <Text style={styles.textQuantity}>{item.quantity}</Text>
-                            <Image source={increaseImage}/>
+                            <TouchableOpacity>
+                                <Image source={increaseImage}/>
+                            </TouchableOpacity>
                         </View>
                     </View>
                 )}
